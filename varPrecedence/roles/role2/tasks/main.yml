@@ -1,0 +1,11 @@
+- name: task1 in role2
+  debug: 
+    msg: 
+     - 'Inside role2 in task1 favcolor - {{ favcolor }}'
+
+- name: task2 in role2
+  vars:
+    favcolor: 'task2_in_role2_applied'
+  debug: 
+    msg: 
+     - 'Inside role2 in task2 favcolor - {{ favcolor }}'

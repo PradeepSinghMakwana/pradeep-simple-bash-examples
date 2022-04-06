@@ -1,0 +1,11 @@
+- name: "task1 in role1/handlers"
+  debug: 
+    msg:
+     - 'task1 in role1/handlers - {{ favcolor }}'
+- name: "task2 in role1/handlers"
+  vars:
+    favcolor: 'role_handlers_applied'
+  debug: 
+    msg:
+     - 'task2 in role1/handlers - {{ favcolor }}'
+

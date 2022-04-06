@@ -1,0 +1,35 @@
+- name: task1 in role1
+  debug: 
+    msg: 
+     - 'Inside role1 in task1 favcolor - {{ favcolor }}'
+
+- name: task2 in role1
+  vars:
+    favcolor: 'task2_in_role1_applied'
+  debug: 
+    msg: 
+     - 'Inside role1 in task2 favcolor - {{ favcolor }}'
+
+- name: task3 in role1
+  vars:
+    favcolor: 'task3_in_role1_applied'
+  include_role:
+    name: role2
+
+- name: task4 in role1  
+  debug: 
+    msg: 
+     - 'Inside role1 in task4 favcolor - {{ favcolor }}'
+
+- name: task5 in role1
+  vars:
+    favcolor: 'task5_in_role1_applied'
+  include_role:
+    name: role2
+    public: yes
+
+- name: task6 in role1  
+  debug: 
+    msg: 
+     - 'Inside role1 in task6 favcolor - {{ favcolor }}'
+

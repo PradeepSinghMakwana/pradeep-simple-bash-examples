@@ -1,0 +1,48 @@
+- name: variable precedence play1 using vars_files without role
+  hosts: localhost
+  
+  vars:
+    favcolor: 'playbook_play1_value'
+  vars_files:
+    - roles/role1/vars/external_vars.yml
+
+
+  tasks:
+   - debug:
+       msg: 'Inside playbook play1 favcolor set to playbook_play1_value - {{ favcolor }}'
+   
+- name: variable precedence play2 without using vars_files and without role
+  hosts: localhost
+
+  vars:
+    favcolor: 'playbook_play2_value'
+
+  tasks:
+   - debug:
+       msg: 'Inside playbook play2 favcolor set to playbook_play2_value - {{ favcolor }}'
+
+
+- name: variable precedence play3 with role but without vars_files
+  hosts: localhost
+
+  roles: 
+   - role: role1
+  vars:
+    favcolor: 'playbook_play3_value'
+
+  tasks:
+   - debug:
+       msg: 'Inside playbook play3 with role and favcolor set to playbook_play3_value - {{ favcolor }}'
+
+
+
+# - hosts: all
+#   vars:
+#     favcolor: blue
+#   vars_files:
+#     - /vars/external_vars.yml
+
+#   tasks:
+
+#   - name: This is just a placeholder
+#     command: /bin/echo foo

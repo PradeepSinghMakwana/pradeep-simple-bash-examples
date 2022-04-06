@@ -3,6 +3,7 @@
   ansible.builtin.file:
     path: /tmp/ansible_hosts
     state: absent
+
 - name: Write lines to the temorary host file.
   ansible.builtin.blockinfile: 
     path: /tmp/ansible_hosts
@@ -12,13 +13,16 @@
       192.0.2.50
       aserver.example.org
       bserver.example.org
+
 - name: Copy the temporary file and backup the old one.
   ansible.builtin.copy: 
       src: /tmp/ansible_hosts
       dest: /tmp/ansible_hosts2
       backup: yes
+
 - name: Execute the commands.
   command: "ansible-playbook ./my_task.yaml"
+
 - name: Loop through items
   ansible.builtin.lineinfile:
     path: /tmp/ansible_counter
