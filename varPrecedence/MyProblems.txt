@@ -1,0 +1,64 @@
+I am not able to understand what to do when we have to show variable overriding behaviour. The problem is if the variable does not exist anywhere it will err out everything.
+If the variable is overriden by another file, that variable 
+
+
+I want to connect with dipesh sir on skype. Is it okay?
+
+role2_task_vars: 'role2_task2_vars_applied'
+
+hosts vars are still not considered important
+
+I still did not tell what overrides what
+
+
+
+Role1 tasks include role2, role2 defaults only some are overridden by role1, others are as it is of role2.
+Playbook
+
+
+They are simply different scopes that exist independently of each other, no sharing of variable.
+
+inventory host_vars
+
+play vars_prompt 
+play vars_files
+
+block vars
+
+role (and include_role) params
+
+include params
+
+host facts / cached set_facts 4
+
+playbook group_vars
+
+inventory group_vars
+
+inventory file or script host vars 2
+
+playbook host_vars/* 3
+
+done
+include_role
+
+
+not done
+set_facts / registered vars
+
+
+
+
+role defaults (defined in role/defaults/main.yml) 1 overrided playbook group_vars/all 3 which shall not be true according to the documentation.
+
+
+Start learning about
+
+Ansible config file
+
+Jenkins
+	pipeline
+	freestyle job(controller of bash script)
+	multi-branch pipeline
+	Groovy
+	types of pipeline

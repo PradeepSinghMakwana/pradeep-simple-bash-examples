@@ -111,3 +111,11 @@ b_group:
 
 ansible_group_priority can only be set in the inventory source and not in group_vars/, as the variable is used in the loading of group_vars.
 
+
+ansible.builtin.set_fact module
+-----------------------------------------------
+# Reference: https://docs.ansible.com/ansible/2.9_ja/modules/set_fact_module.html#set-fact-set-host-facts-from-a-task
+
+Set cacheable to yes to save variables across executions using a fact cache. Variables created with set_fact have different precedence depending on whether they are or are not cached.
+
+facts not defined needs to wait for the user, so ansible decides to search for other places where tha variable may be defined. This causes facts_uncached to be initialised later and hence have higher precedence. While facts already cached have lower precedence as they can be immediately overriden.

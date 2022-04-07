@@ -1,39 +1,129 @@
-- name: variable precedence play1 using vars_files without role
+   
+- name: variable precedence play1 without vars_files, role or vars , group_vars_all should apply - group_vars seems default
   hosts: localhost
-  
+    # role1_defaults_main: 'role1_task_vars'
+    # inventories_main_vars: 'role1_task_vars'
+    # group_vars: 'role1_task_vars'
+    # playbook_play1_vars: 'role1_task_vars'
+    # role1_library_main: 'role1_task_vars'
+    # role1_task_vars: 'role1_task_vars'
+    # role1_vars_main: 'role1_task_vars'
+  tasks:
+   - debug:
+       msg:
+       - 'Inside playbook play1 favcolor - {{ favcolor }}'
+       - 'Inside playbook play1 role1_defaults_main - {{ role1_defaults_main }}'
+       - 'Inside playbook play1 inventories_main_vars - {{ inventories_main_vars }}'
+       - 'Inside playbook play1 group_vars - {{ group_vars }}'
+       - 'Inside playbook play1 playbook_play1_vars - {{ playbook_play1_vars }}'
+       - 'Inside playbook play1 role1_library_main - {{ role1_library_main }}'
+       - 'Inside playbook play1 role1_task_vars - {{ role1_task_vars }}'
+       - 'Inside playbook play1 role1_vars_main - {{ role1_vars_main }}'
+       
+       
+   
+- name: variable precedence play1 with vars set and without vars_files, role, playbook_play1_value should apply - playbook_play_vars overrides group_vars
+  hosts: localhost
+
   vars:
     favcolor: 'playbook_play1_value'
-  vars_files:
-    - roles/role1/vars/external_vars.yml
-
-
-  tasks:
-   - debug:
-       msg: 'Inside playbook play1 favcolor set to playbook_play1_value - {{ favcolor }}'
-   
-- name: variable precedence play2 without using vars_files and without role
-  hosts: localhost
-
-  vars:
-    favcolor: 'playbook_play2_value'
+    role1_defaults_main: 'playbook_play1_value'
+    inventories_main_vars: 'playbook_play1_value'
+    group_vars: 'playbook_play1_value'
+    playbook_play1_vars: 'playbook_play1_value'
+    role1_library_main: 'playbook_play1_value'
+    role1_task_vars: 'playbook_play1_value'
+    role1_vars_main: 'playbook_play1_value'
 
   tasks:
    - debug:
-       msg: 'Inside playbook play2 favcolor set to playbook_play2_value - {{ favcolor }}'
+       msg:
+       - 'Inside playbook play1 favcolor set to playbook_play1_value - {{ favcolor }}'
+       - 'Inside playbook play1 role1_defaults_main - {{ role1_defaults_main }}'
+       - 'Inside playbook play1 inventories_main_vars - {{ inventories_main_vars }}'
+       - 'Inside playbook play1 group_vars - {{ group_vars }}'
+       - 'Inside playbook play1 playbook_play1_vars - {{ playbook_play1_vars }}'
+       - 'Inside playbook play1 role1_library_main - {{ role1_library_main }}'
+       - 'Inside playbook play1 role1_task_vars - {{ role1_task_vars }}'
+       - 'Inside playbook play1 role1_vars_main - {{ role1_vars_main }}'
+       
 
 
-- name: variable precedence play3 with role but without vars_files
+- name: variable precedence play3 with role,vars but without vars_files , role1_vars_main_applied should apply  - role1_vars_main_applied overrides playbook_play_vars overrides group_vars
   hosts: localhost
 
   roles: 
    - role: role1
   vars:
     favcolor: 'playbook_play3_value'
+    inventories_main_vars: 'playbook_play3_value'
+    group_vars: 'playbook_play3_value'
+    playbook_play1_vars: 'playbook_play3_value'
+    role1_defaults_main: 'playbook_play3_value'
+    role1_library_main: 'playbook_play3_value'
+    role1_task_vars: 'playbook_play3_value'
+    role1_vars_main: 'playbook_play3_value'
+    role2_defaults_main: 'playbook_play3_value'
+    role2_library_main: 'playbook_play3_value'
+    role2_task_vars: 'playbook_play3_value'
+    role2_vars_main: 'playbook_play3_value'
 
   tasks:
    - debug:
-       msg: 'Inside playbook play3 with role and favcolor set to playbook_play3_value - {{ favcolor }}'
+       msg:
+       - 'Inside playbook play3 with role and favcolor set to playbook_play3_value - {{ favcolor }}'
+       - 'Inside playbook play3 inventories_main_vars - {{ inventories_main_vars }}'
+       - 'Inside playbook play3 group_vars - {{ group_vars }}'
+       - 'Inside playbook play3 playbook_play1_vars - {{ playbook_play1_vars }}'
+       - 'Inside playbook play3 role1_defaults_main - {{ role1_defaults_main }}'
+       - 'Inside playbook play3 role1_library_main - {{ role1_library_main }}'
+       - 'Inside playbook play3 role1_task_vars - {{ role1_task_vars }}'
+       - 'Inside playbook play3 role1_vars_main - {{ role1_vars_main }}'
+       - 'Inside playbook play3 role2_defaults_main - {{ role2_defaults_main }}'
+       - 'Inside playbook play3 role2_library_main - {{ role2_library_main }}'
+       - 'Inside playbook play3 role2_task_vars - {{ role2_task_vars }}'
+       - 'Inside playbook play3 role2_vars_main - {{ role2_vars_main }}'
 
+
+- name: To show vars_prompt overrides vars.
+  hosts: localhost
+
+  # vars_prompt:
+  # - name: username
+  #   prompt: What is your username?
+  #   private: no
+
+  # - name: password
+  #   prompt: What is your password?
+  
+  vars:
+    username: 'var_username'
+
+  tasks:
+
+    - name: Print a message
+      ansible.builtin.debug:
+        msg: 'Logging in as {{ username }}'
+
+- name: Notice how vars_prompt overrides vars, even though vars is initialised earlier. This is because vars_prompt is set late after calculation is finished.
+  hosts: localhost
+
+  vars_prompt:
+  - name: username
+    prompt: What is your username?
+    private: no
+
+  - name: password
+    prompt: What is your password?
+  
+  vars:
+    username: 'var_username'
+
+  tasks:
+
+    - name: Print a message
+      ansible.builtin.debug:
+        msg: 'Logging in as {{ username }}'
 
 
 # - hosts: all
