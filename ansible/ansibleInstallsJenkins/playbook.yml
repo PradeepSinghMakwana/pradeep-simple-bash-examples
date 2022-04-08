@@ -1,0 +1,12 @@
+---
+- name: Install DevOps Packages
+  hosts: localhost
+  remote_user: root
+  become: yes
+
+  roles:
+    - installer
+  
+
+  
+

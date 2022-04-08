@@ -1,0 +1,8 @@
+favcolor: 'group_vars_applied'
+group_vars: 'group_vars_applied'
+inventories_main_vars: 'group_vars_applied'
+playbook_play1_vars: 'group_vars_applied'
+role1_defaults_main: 'group_vars_applied'
+role1_vars_main: 'group_vars_applied'
+role1_library_main: 'group_vars_applied'
+role1_task_vars: 'group_vars_applied'

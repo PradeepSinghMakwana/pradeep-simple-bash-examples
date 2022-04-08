@@ -1,0 +1,127 @@
+- name: task1 in role1 without vars  - role1_vars_main_applied overrides playbook_play_vars overrides group_vars
+  debug: 
+    msg: 
+     - 'Inside role1 in task1 favcolor - {{ favcolor }}'
+     - 'Inside role1 in task1 inventories_main_vars - {{ inventories_main_vars }}'
+     - 'Inside role1 in task1 group_vars - {{ group_vars }}'
+     - 'Inside role1 in task1 playbook_play1_vars - {{ playbook_play1_vars }}'
+     - 'Inside role1 in task1 role1_defaults_main - {{ role1_defaults_main }}'
+     - 'Inside role1 in task1 role1_library_main - {{ role1_library_main }}'
+     - 'Inside role1 in task1 role1_task_vars - {{ role1_task_vars }}'
+     - 'Inside role1 in task1 role1_vars_main - {{ role1_vars_main }}'
+     - 'Inside role1 in task1 role2_defaults_main - {{ role2_defaults_main }}'
+     - 'Inside role1 in task1 role2_library_main - {{ role2_library_main }}'
+     - 'Inside role1 in task1 role2_task_vars - {{ role2_task_vars }}'
+     - 'Inside role1 in task1 role2_vars_main - {{ role2_vars_main }}'
+
+- name: task2 in role1 with vars  - role1_task_vars overrides role1_vars_main_applied overrides playbook_play_vars overrides group_vars
+  vars:
+    favcolor: 'role1_task_vars'
+    
+    inventories_main_vars: 'role1_task_vars'
+    group_vars: 'role1_task_vars'
+    playbook_play1_vars: 'role1_task_vars'
+    
+    role1_defaults_main: 'role1_task_vars'
+    role1_library_main: 'role1_task_vars'
+    role1_task_vars: 'role1_task_vars'
+    role1_vars_main: 'role1_task_vars'
+
+    role2_defaults_main: 'role1_task_vars'
+    role2_vars_main: 'role1_task_vars'
+    role2_library_main: 'role1_task_vars'
+    role2_task_vars: 'role1_task_vars'
+
+  debug: 
+    msg: 
+     - 'Inside role1 in task2 favcolor - {{ favcolor }}'
+     - 'Inside role1 in task2 role1_defaults_main - {{ role1_defaults_main }}'
+     - 'Inside role1 in task2 inventories_main_vars - {{ inventories_main_vars }}'
+     - 'Inside role1 in task2 group_vars - {{ group_vars }}'
+     - 'Inside role1 in task2 playbook_play1_vars - {{ playbook_play1_vars }}'
+     - 'Inside role1 in task2 role1_library_main - {{ role1_library_main }}'
+     - 'Inside role1 in task2 role1_task_vars - {{ role1_task_vars }}'
+     - 'Inside role1 in task2 role1_vars_main - {{ role1_vars_main }}'
+     - 'Inside role1 in task2 role2_defaults_main - {{ role2_defaults_main }}'
+     - 'Inside role1 in task2 role2_library_main - {{ role2_library_main }}'
+     - 'Inside role1 in task2 role2_task_vars - {{ role2_task_vars }}'
+     - 'Inside role1 in task2 role2_vars_main - {{ role2_vars_main }}'
+
+
+- name: task3 in role1 set vars and include role2(not public) none of what happened internally is visible  - role1_task_vars overrides role1_vars_main_applied overrides playbook_play_vars overrides group_vars
+  vars:
+    favcolor: 'role1_task_vars'
+    
+    inventories_main_vars: 'role1_task_vars'
+    group_vars: 'role1_task_vars'
+    playbook_play1_vars: 'role1_task_vars'
+    
+    role1_defaults_main: 'role1_task_vars'
+    role1_library_main: 'role1_task_vars'
+    role1_task_vars: 'role1_task_vars'
+    role1_vars_main: 'role1_task_vars'
+
+    role2_defaults_main: 'role1_task_vars'
+    role2_vars_main: 'role1_task_vars'
+    role2_library_main: 'role1_task_vars'
+    role2_task_vars: 'role1_task_vars'
+
+  include_role:
+    name: role2
+
+- name: task4 in role1 without vars
+  debug: 
+    msg: 
+     - 'Inside role1 in task4 favcolor - {{ favcolor }}'
+     - 'Inside role1 in task4 inventories_main_vars - {{ inventories_main_vars }}'
+     - 'Inside role1 in task4 group_vars - {{ group_vars }}'
+     - 'Inside role1 in task4 playbook_play1_vars - {{ playbook_play1_vars }}'
+     - 'Inside role1 in task4 role1_defaults_main - {{ role1_defaults_main }}'
+     - 'Inside role1 in task4 role1_library_main - {{ role1_library_main }}'
+     - 'Inside role1 in task4 role1_task_vars - {{ role1_task_vars }}'
+     - 'Inside role1 in task4 role1_vars_main - {{ role1_vars_main }}'
+     - 'Inside role1 in task4 role2_defaults_main - {{ role2_defaults_main }}'
+     - 'Inside role1 in task4 role2_library_main - {{ role2_library_main }}'
+     - 'Inside role1 in task4 role2_task_vars - {{ role2_task_vars }}'
+     - 'Inside role1 in task4 role2_vars_main - {{ role2_vars_main }}'
+
+
+- name: task5 in role1 with vars include_role2 (public), everything happened internally is visible  - role1_task_vars overrides role1_vars_main_applied overrides playbook_play_vars overrides group_vars
+  vars:
+    favcolor: 'role1_task_vars'
+    
+    inventories_main_vars: 'role1_task_vars'
+    group_vars: 'role1_task_vars'
+    playbook_play1_vars: 'role1_task_vars'
+    
+    role1_defaults_main: 'role1_task_vars'
+    role1_library_main: 'role1_task_vars'
+    role1_task_vars: 'role1_task_vars'
+    role1_vars_main: 'role1_task_vars'
+    
+    role2_defaults_main: 'role1_task_vars'
+    role2_vars_main: 'role1_task_vars'
+    role2_library_main: 'role1_task_vars'
+    role2_task_vars: 'role1_task_vars'
+
+  include_role:
+    name: role2
+    public: yes
+
+- name: task6 in role1 with vars include_role2 (public), everything happened internally is visible  - role1_vars_main_applied overrides role2_vars_main_applied overrides playbook_play_vars overrides group_vars
+  debug: 
+    msg: 
+     - 'Inside role1 in task6 favcolor - {{ favcolor }}'
+     - 'Inside role1 in task6 inventories_main_vars - {{ inventories_main_vars }}'
+     - 'Inside role1 in task6 group_vars - {{ group_vars }}'
+     - 'Inside role1 in task6 playbook_play1_vars - {{ playbook_play1_vars }}'
+     - 'Inside role1 in task6 role1_defaults_main - {{ role1_defaults_main }}'
+     - 'Inside role1 in task6 role1_library_main - {{ role1_library_main }}'
+     - 'Inside role1 in task6 role1_task_vars - {{ role1_task_vars }}'
+     - 'Inside role1 in task6 role1_vars_main - {{ role1_vars_main }}'
+     - 'Inside role1 in task6 role2_defaults_main - {{ role2_defaults_main }}'
+     - 'Inside role1 in task6 role2_library_main - {{ role2_library_main }}'
+     - 'Inside role1 in task6 role2_task_vars - {{ role2_task_vars }}'
+     - 'Inside role1 in task6 role2_vars_main - {{ role2_vars_main }}'
+
+

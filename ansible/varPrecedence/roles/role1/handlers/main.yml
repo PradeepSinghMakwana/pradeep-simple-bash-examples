@@ -1,0 +1,26 @@
+- name: "task1 in role1/handlers"
+  debug: 
+    msg:
+     - 'task1 in role1/handlers - {{ favcolor }}'
+- name: "task2 in role1/handlers"
+  vars:
+    favcolor: 'role1_handlers_applied'
+
+    inventories_main_vars: 'role1_handlers_applied'
+    group_vars: 'role1_handlers_applied'
+    playbook_play1_vars: 'role1_handlers_applied'
+    
+    role1_defaults_main: 'role1_handlers_applied'
+    role1_vars_main: 'role1_handlers_applied'
+    role1_library_main: 'role1_library_applied'
+    role1_task_vars: 'role1_task_vars'
+
+    role2_defaults_main: 'role1_handlers_applied'
+    role2_vars_main: 'role1_handlers_applied'
+    role2_library_main: 'role1_handlers_applied'
+    role2_task_vars: 'role1_handlers_applied'
+
+  debug: 
+    msg:
+     - 'task2 in role1/handlers - {{ favcolor }}'
+

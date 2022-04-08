@@ -1,0 +1,15 @@
+favcolor: 'role1_vars_main_applied'
+
+group_vars: 'role1_vars_main_applied'
+inventories_main_vars: 'role1_vars_main_applied'
+playbook_play1_vars: 'role1_vars_main_applied'
+
+role1_vars_main: 'role1_vars_main_applied'
+role1_defaults_main: 'role1_vars_main_applied'
+role1_task_vars: 'role1_vars_main_applied'
+role1_library_main: 'role1_vars_main_applied'    
+
+role2_vars_main: 'role1_vars_main_applied'
+role2_defaults_main: 'role1_vars_main_applied'
+role2_task_vars: 'role1_vars_main_applied'
+role2_library_main: 'role1_vars_main_applied'    

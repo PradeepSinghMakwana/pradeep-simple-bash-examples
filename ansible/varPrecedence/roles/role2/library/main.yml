@@ -1,0 +1,14 @@
+favcolor: 'role2_library_applied'
+inventories_main_vars: 'role2_library_applied'
+group_vars: 'role2_library_applied'
+playbook_play1_vars: 'role2_library_applied'
+
+role1_defaults_main: 'role2_library_applied'
+role1_vars_main: 'role2_library_applied'
+role1_library_main: 'role2_library_applied'
+role1_task_vars: 'role2_library_applied'
+
+role2_defaults_main: 'role2_library_applied'
+role2_vars_main: 'role2_library_applied'
+role2_library_main: 'role2_library_applied'
+role2_task_vars: 'role2_library_applied'

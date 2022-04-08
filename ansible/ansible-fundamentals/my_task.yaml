@@ -1,0 +1,8 @@
+---
+- name: My playbook
+  hosts: localhost
+  tasks: 
+  - name: Leaving a mark
+    ansible.builtin.file:
+      path: /tmp/ansible_was_here
+      state: touch

@@ -1,0 +1,13 @@
+- name: Install sublime
+  hosts: localhost
+  gather_facts: True
+  
+  - set_fact:
+      SUBLIME_INSTALL_DIR: {{ ansible_facts["ansible_env"]["HOME"] }}
+
+  roles:
+   - dir_installer
+
+  tasks:
+    
+   
