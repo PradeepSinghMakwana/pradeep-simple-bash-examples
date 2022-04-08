@@ -68,18 +68,26 @@ Jenkins
 	Groovy
 	types of pipeline
 
-# Reference: https://www.youtube.com/watch?v=Ei_Nk14vruE 
-  Why to use
-  Declarative Pipeline instead of Scripted ones? It is more
-  convinient most of the times. It contains options-block which gives
-  code more space to write and reduces the need for deep nesting. It
-  also contains stage state caching and able to store environment
-  variables from earlier stages, which reduces the need to re-run all
-  the previous stages. It is shown with each stage marked separately
-  and easy to work with on BlueOcean UI. It allows the capability to
-  skip a stage and yet get informed for which stage is being skipped
-  and you can see its reason quit easily, than what scripted pipeline
-  provides. You can pretest part of code before agent is allocated to
-  reduce the need for checking out source code at each node, when
-  it's simply not required.
+Nginx
 
+Stages in pipeline are actually like individual freestyle jobs. Each freestyle job triggers another freestyle downstream job. Freestyle jobs do a single work. Freestyle jobs are much older, when pipeline did not came into existence. It's the chain of freestyle jobs that used to accomplish the same thing.  Another difference is pipelines automatically resume when controller is again available, while freestyle jobs stop immediately when controller is killed.
+
+# Reference: https://www.youtube.com/watch?v=Ei_Nk14vruE
+
+Why to use Declarative Pipeline instead of Scripted ones? It is more
+convinient most of the times. It contains options-block which gives
+code more space to write and reduces the need for deep nesting. It
+also contains stage state caching and able to store environment
+variables from earlier stages, which reduces the need to re-run all
+the previous stages. It is shown with each stage marked separately
+and easy to work with on BlueOcean UI. It allows the capability to
+skip a stage and yet get informed for which stage is being skipped
+and you can see its reason quit easily, than what scripted pipeline
+provides. You can pretest part of code before agent is allocated to
+reduce the need for checking out source code at each node, when it's
+simply not required. Declarative pipeline uses plugins to ease declaring work.
+
+
+I still don't know how to create multiple steps and stages in case of scripted pipelines.
+
+git is a plugin and only declarative pipelines allows the use of plugins. As scripted pipelines are written in groovy, they don't use plugins.

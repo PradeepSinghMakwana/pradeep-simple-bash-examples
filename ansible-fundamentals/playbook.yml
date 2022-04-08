@@ -1,9 +1,0 @@
-#  INstall sublime text
-
-- name: Create a new ansible host file temporarily and backup the old one.
-  hosts: localhost
-  remote_user: root
-
-  roles:
-    - worker
-    
