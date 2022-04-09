@@ -29,7 +29,7 @@ pipeline {
         stage('Calculate') {
             
             steps {
-                sh script: WORKSPACE+"/bash-examples/calculator.sh add $first_num $second_num"
+                sh script: WORKSPACE+"/bash-examples/calculator.sh addition $first_num $second_num"
                 
             }
         }
