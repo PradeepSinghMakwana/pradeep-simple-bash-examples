@@ -91,3 +91,38 @@ simply not required. Declarative pipeline uses plugins to ease declaring work.
 I still don't know how to create multiple steps and stages in case of scripted pipelines.
 
 git is a plugin and only declarative pipelines allows the use of plugins. As scripted pipelines are written in groovy, they don't use plugins.
+
+
+
+# Reference: https://www.youtube.com/watch?v=B_2FXWI6CWg
+A multibranch job is a folder of pipeline jobs. After scanning(which can be push bashed-webhook or poll bashed) an automatic build of all matching git-branches (using regex match or wildcards) happen.
+
+
+Docker
+# Reference: https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#dockerfile-instructions
+
+RUN apt-get update && apt-get install -y \
+    aufs-tools \
+    ruby1.9.1-dev \
+    s3cmd=1.1.* \
+ && rm -rf /var/lib/apt/lists/*
+
+In addition, when you clean up the apt cache by removing /var/lib/apt/lists it reduces the image size, since the apt cache is not stored in a layer. Since the RUN statement starts with apt-get update, the package cache is always refreshed prior to apt-get install.
+
+Official Debian and Ubuntu images automatically run apt-get clean, so explicit invocation is not required.
+
+Using pipes
+-----------
+RUN wget -O - https://some.site | wc -l > /number
+
+If you want the command to fail due to an error at any stage in the pipe, prepend set -o pipefail && to ensure that an unexpected error prevents the build from inadvertently succeeding. For example:
+
+RUN set -o pipefail && wget -O - https://some.site | wc -l > /number
+
+The CMD instruction should be used to run the software contained in your image.
+CMD ["executable", "param1", "param2"…]
+
+docker run -it python, you’ll get dropped into a usable shell,
+
+
+I have some problems in installing both apache, php with mysql. However there are LAMP images directly available which does so, and they have gone through the trouble for important reasons and OS issues, that I don't need to get unnecessarily into.
