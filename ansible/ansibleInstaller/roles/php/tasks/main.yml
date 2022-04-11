@@ -1,0 +1,17 @@
+- name: add apt_repository for php
+  apt_repository:
+    repo: ppa:ondrej/php
+
+# Although installing php alone is enough, installing some common packages is worth doing
+- name: Install php
+  apt:
+    pkg:
+    - "php{{ php_version }}"
+    - "php{{ php_version }}-cli"
+    - "php{{ php_version }}-mysql"
+    - "php{{ php_version }}-json"
+    - "php{{ php_version }}-common"
+    - "php{{ php_version }}-curl"
+    - "php{{ php_version }}-xml"
+    update_cache: yes
+

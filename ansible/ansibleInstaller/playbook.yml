@@ -5,7 +5,10 @@
   become: yes
 
   roles:
-    - installer
+    - apache
+    - php
+    - jenkins
+    - nginx
   
 
   

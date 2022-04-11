@@ -1,0 +1,5 @@
+- name: Install Apache
+  apt:
+    pkg: 
+    - apache2
+    - libncurses5

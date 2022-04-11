@@ -1,9 +1,8 @@
+# Install JDK, required for Jenkins
 - name: Install JDK
   apt:
     name: default-jdk
-    state: present
 
 - name: Install Jenkins
   apt:
     name: jenkins
-    state: present

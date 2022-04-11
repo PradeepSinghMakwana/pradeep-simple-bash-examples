@@ -1,0 +1,42 @@
+- name: Install nginx
+  apt:
+    name: nginx
+    update_cache: yes
+
+- name: Create a nginx directory if it does not exist
+  file:
+    path: "{{ nginx_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Copy index.html to nginx directory
+  copy:
+    src: files/index.html
+    dest: "{{ nginx_dir }}/index.html"
+
+# Reference: https://ubuntu.com/tutorials/install-and-configure-nginx#4-setting-up-virtual-host
+# Problems following this tutorial, the 
+# default file already exists, at 
+- name: Configure nginx virtual host
+  template:
+    src: templates/default.j2
+    dest: /etc/nginx/sites-available/default
+
+# Already linked
+# - name: To enable virtual host, need to symlink
+#   file:
+#     src: /etc/nginx/sites-available/default
+#     dest: /etc/nginx/sites-enabled/default
+#     state: link
+
+# Reference: https://www.nginx.com/resources/wiki/start/topics/tutorials/gettingstarted/#running-nginx
+# After editing the configuration file 
+# at /usr/local/nginx/conf/nginx.conf 
+# to your liking, you can reload the 
+# configuration with:
+# kill -HUP `cat /usr/local/nginx/logs/nginx.pid`
+
+- name: Restart service nginx
+  ansible.builtin.service:
+    name: nginx
+    state: restarted
