@@ -1,0 +1,3 @@
+nginx_port: 81
+nginx_server_name: example.ubuntu.com
+nginx_dir: /var/www/nginx
